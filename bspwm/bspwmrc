@@ -1,0 +1,67 @@
+#!/bin/sh
+
+sxhkd &
+
+# Get monitor status
+external_monitor=$(xrandr -q | grep HDMI-1)
+
+# Match if connected and toggles primary display to hdmi
+if [[ $external_monitor = *connected* ]]; then
+    bspc monitor HDMI-1 -d cli dev www mus
+    bspc monitor eDP-1 -d misc misc misc
+else
+    bspc monitor -d cli dev www exp mus misc
+fi
+
+# Reorder monitors in bspc #!(don't change the order)
+bspc monitor eDP-1 -s HDMI-1
+
+# Dual display script
+if [ -x ./display.sh ]; then
+    ./display.sh
+fi
+
+bspc config border_width 0
+bspc config window_gap 8
+bspc config top_padding -5
+
+bspc config split_ratio 0.52
+bspc config borderless_monocle true
+bspc config gapless_monocle false
+
+# bspc config active_border_color '#1d2021'
+# bspc config normal_border_color '#1d2021'
+# bspc config focused_border_color '#1d2021'
+
+# bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Chromium desktop='^3'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+bspc rule -a "Code" desktop='^2' follow=on
+bspc rule -a firefox desktop='^3' follow=on
+bspc rule -a "Vivaldi-stable" desktop='^3' follow=on
+bspc rule -a "spotify" desktop='^4'
+bspc rule -a Alacritty state=floating follow=on
+
+# Load wallpaper
+nitrogen --restore
+
+# Load polybar fonts
+xset +fp /usr/share/fonts
+xset fp rehash
+
+# Load polybar
+~/.config/polybar/launch.sh
+
+# Load conky
+# conky -c ~/.config/conky/conky.conf
+
+# Load picom
+picom --config ~/.config/picom/picom.conf
+
+# Load pulseaudio custom config
+pulseaudio -F .config/pulse/daemon.conf
+
+# Set pointer cursor
+# xsetroot -cursor_name left_ptr &
