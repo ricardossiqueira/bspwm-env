@@ -1,0 +1,12 @@
+*
+!alacritty/*
+!bspwm/*
+!conky/*
+!picom/*
+!polybar/*
+!pulse/*
+!rofi/*
+!sxhkd/*
+!wallpapers/*
+!zsh/*
+!.gitignore
