@@ -16,11 +16,20 @@ control() {
 
 on_click() {
   is_running=$(ps -A | grep spotify)
-  if [[ $is_running != *spotify* ]]; then
-    spotify &
-  else
+  if [[ $is_running == *spotify* ]]; then
     bspc desktop --focus ^4
+  else
+    spotify &
   fi
+}
+
+print_meta() {
+  is_running=$(ps -A | grep spotify);
+  if [[ $is_running == *spotify* ]];then 
+    ~/.config/polybar/scripts/spotify/meta.sh;
+  else
+    echo "Spotify ";
+  fi;
 }
 
 main() {
@@ -29,6 +38,7 @@ main() {
   play_pause) control  契 ;;
   next) control 怜 怜 ;;
   launch) on_click ;;
+  meta) print_meta ;;
   *) echo err ;;
   esac
 }
