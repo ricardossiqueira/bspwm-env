@@ -10,7 +10,7 @@ if [[ $external_monitor = *connected* ]]; then
     bspc monitor HDMI-1 -d cli dev www mus
     bspc monitor eDP-1 -d misc misc misc
 else
-    bspc monitor -d cli dev www exp mus misc
+    bspc monitor -d cli dev www mus misc
 fi
 
 # Reorder monitors in bspc #!(don't change the order)
