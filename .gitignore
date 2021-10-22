@@ -9,5 +9,6 @@
 !zsh
 !alacritty
 !starship
+!fish
 !.gitignore
 *
