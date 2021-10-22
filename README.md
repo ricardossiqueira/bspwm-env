@@ -8,6 +8,10 @@
 
   [**Ayu Mirage**](https://github.com/dempfi/ayu)
 
+## Dependencies
+
+ - [zscroll-git](https://github.com/noctuid/zscroll)
+
 ## Includes 
  
  - allacrity
